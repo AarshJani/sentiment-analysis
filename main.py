@@ -21,8 +21,8 @@ val_text, test_text, val_labels, test_labels = train_test_split(temp_text, temp_
                                                                 stratify=temp_labels)
 
 # TF-IDF vectorization
-max_features = 10000  # Adjust max_features as needed
-tfidf_vectorizer = TfidfVectorizer(max_features=max_features)  
+max_feature = 10000  # Adjust max_features as needed
+tfidf_vectorizer = TfidfVectorizer(max_features=max_feature)  
 train_tfidf = tfidf_vectorizer.fit_transform(train_text)
 val_tfidf = tfidf_vectorizer.transform(val_text)
 test_tfidf = tfidf_vectorizer.transform(test_text)
@@ -31,7 +31,7 @@ with open('tfidf_vectorizer.pkl', 'wb') as file:
     pickle.dump(tfidf_vectorizer, file)
 
 # Get the actual number of features after vectorization
-num_features = min(max_features, train_tfidf.shape[1])  # Ensure consistency with max_features
+num_features = min(max_feature, train_tfidf.shape[1])  # Ensure consistency with max_features
 
 # Define model architecture
 model = Sequential([
